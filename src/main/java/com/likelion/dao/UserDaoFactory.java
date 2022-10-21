@@ -1,25 +1,15 @@
 package com.likelion.dao;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
+import com.likelion.domain.User;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.annotation.Bean;
+
+@Configurable
 public class UserDaoFactory {
 
     @Bean
     public UserDao awsUserDao() {
         return new UserDao(new AwsConnectionMaker());
-    }
-
-    /*
-    @Bean
-    public UserDao awsUserDao() {
-        return new UserDao(new AwsConnectionMaker());
-    }
-    */
-
-    @Bean
-    public UserDao localUserDao() {
-        return new UserDao(new LocalConnectionMaker());
     }
 }
