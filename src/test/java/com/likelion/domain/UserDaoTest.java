@@ -24,20 +24,19 @@ class UserDaoTest {
     ApplicationContext context;
 
     UserDao userDao;
-
-    User user1;
-
-    User user2;
-
-    User user3;
+    User user1 = new User("1", "kyeongrok", "1123");
+    User user2 = new User("2", "kyeonghwan", "1234");
+    User user3 = new User("3", "sujin", "4321");
 
 
     @BeforeEach
     void setUp() {
         this.userDao = context.getBean("awsUserDao", UserDao.class);
+        /*
         this.user1 = new User("1", "kyeongrok", "1123");
         this.user2 = new User("2", "kyeonghwan", "1234");
         this.user3 = new User("3", "sujin", "4321");
+         */
     }
 
     @Test
@@ -47,10 +46,9 @@ class UserDaoTest {
         userDao.deleteAll();
         assertEquals(0, userDao.getCount());
 
-        String id = "29";
-        userDao.add(new User(id, "EternityHwan", "1234"));
+        userDao.add(user1);
         assertEquals(1, userDao.getCount());
-        User user = userDao.findById(id);
+        User user = userDao.findById(user1.getId());
 
         assertEquals("EternityHwan", user.getName());
         assertEquals("1234", user.getPassword());
